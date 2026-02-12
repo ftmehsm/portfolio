@@ -9,6 +9,7 @@ export default function Projects() {
   const isFa = language === 'fa'
   const projects = isFa ? projectsData.listFa : projectsData.listEn
   const linkLabelFallback = isFa ? projectsData.viewOnGithubFa : projectsData.viewOnGithubEn
+  const liveDemoLabel = isFa ? projectsData.liveDemoFa : projectsData.liveDemoEn
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
@@ -74,17 +75,30 @@ export default function Projects() {
                     className="border-t border-gray-100 dark:border-gray-700"
                   >
                     <div className="p-4 sm:p-5 pt-2 text-gray-600 dark:text-gray-400 text-sm sm:text-base leading-relaxed">
-                      {project.link && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-gray-800 dark:text-gray-200 hover:underline mb-2"
-                        >
-                          {project.linkLabel != null ? project.linkLabel : linkLabelFallback}
-                          <HiExternalLink className="w-4 h-4" aria-hidden="true" />
-                        </a>
-                      )}
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
+                        {project.demoUrl && (
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-gray-800 dark:text-gray-200 hover:underline"
+                          >
+                            {liveDemoLabel}
+                            <HiExternalLink className="w-4 h-4" aria-hidden="true" />
+                          </a>
+                        )}
+                        {project.link && (
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-gray-800 dark:text-gray-200 hover:underline"
+                          >
+                            {project.linkLabel != null ? project.linkLabel : linkLabelFallback}
+                            <HiExternalLink className="w-4 h-4" aria-hidden="true" />
+                          </a>
+                        )}
+                      </div>
                       <p className="mb-3">{project.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {project.tech.map((t) => (

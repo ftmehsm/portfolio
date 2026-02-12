@@ -148,6 +148,8 @@ export const projects = {
   headingFa: 'پروژه‌ها',
   viewOnGithubEn: 'View on GitHub',
   viewOnGithubFa: 'مشاهده در گیت‌هاب',
+  liveDemoEn: 'Live demo',
+  liveDemoFa: 'دموی زنده',
   listEn: [
     {
       title: 'B2B website',
@@ -161,6 +163,7 @@ export const projects = {
     {
       title: 'Social media web app',
       subtitle: '(fullstack project)',
+      demoUrl: 'https://social-media-uni.vercel.app/',
       link: 'https://github.com/ftmehsm/Social-media-app',
       linkLabel: null,
       description:
@@ -208,6 +211,7 @@ export const projects = {
     {
       title: 'اپلیکیشن شبکه اجتماعی',
       subtitle: '(پروژه فول‌استک)',
+      demoUrl: 'https://social-media-uni.vercel.app/',
       link: 'https://github.com/ftmehsm/Social-media-app',
       linkLabel: null,
       description:
