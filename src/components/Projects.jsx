@@ -2,104 +2,13 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HiChevronDown, HiExternalLink } from 'react-icons/hi'
 import { useLanguage } from '../context/LanguageContext'
-
-const projectsEn = [
-  {
-    title: 'B2B website',
-    link: 'https://adak.ir/',
-    linkLabel: 'adak.ir',
-    description:
-      '1 year experience in adak b2b company, a b2b website for company customers, using next.js and typescript, using storybook to make components.',
-    tech: ['Next.js', 'TypeScript', 'Storybook'],
-  },
-  {
-    title: 'Social media web app',
-    subtitle: '(fullstack project)',
-    link: 'https://github.com/ftmehsm/Social-media-app',
-    linkLabel: 'View on GitHub',
-    description:
-      'Fullstack social media application similar to Twitter, built with Next.js and TypeScript on both frontend and backend, using Prisma ORM with a PostgreSQL database.',
-    tech: ['Next.js', 'TypeScript', 'Prisma ORM', 'PostgreSQL'],
-  },
-  {
-    title: 'Blog GraphQL with React js',
-    subtitle: '(simple practical project)',
-    link: 'https://github.com/ftmehsm/blog-graphql',
-    linkLabel: 'View on GitHub',
-    description:
-      'Using hygraph to make a database, using MUI to design the project, use graphQL.',
-    tech: ['React.js', 'Hygraph', 'GraphQL', 'MUI'],
-  },
-  {
-    title: 'Divar Website',
-    subtitle: '(final project of react tutorial)',
-    link: 'https://github.com/ftmehsm/divar',
-    linkLabel: 'View on GitHub',
-    description:
-      'Using real backend and have experience with swagger, using authorization and authentication concept (with cookies), using react-query, use React-Hook-Form, use TailwindCss for styles, use Context for managing states.',
-    tech: ['React', 'Swagger', 'react-query', 'React-Hook-Form', 'TailwindCss', 'Context'],
-  },
-  {
-    title: 'Shopping Cart with React js',
-    subtitle: '(simple practical project)',
-    link: 'https://github.com/ftmehsm/shoppingCart',
-    linkLabel: 'View on GitHub',
-    description:
-      'Using Hooks like useState, useEffect, ..., using Routing (react-router-dom 6), using Redux-toolkit to manage states.',
-    tech: ['React.js', 'react-router-dom 6', 'Redux-toolkit'],
-  },
-]
-
-const projectsFa = [
-  {
-    title: 'سایت B2B',
-    link: 'https://adak.ir/',
-    linkLabel: 'adak.ir',
-    description:
-      'یک سال تجربه در شرکت B2B آداک، توسعه وب‌سایت B2B برای مشتریان سازمانی با استفاده از Next.js و TypeScript و استفاده از Storybook برای ساخت کامپوننت‌ها.',
-    tech: ['Next.js', 'TypeScript', 'Storybook'],
-  },
-  {
-    title: 'اپلیکیشن شبکه اجتماعی',
-    subtitle: '(پروژه فول‌استک)',
-    link: 'https://github.com/ftmehsm/Social-media-app',
-    linkLabel: 'مشاهده در گیت‌هاب',
-    description:
-      'اپلیکیشن شبکه اجتماعی شبیه توییتر، پیاده‌سازی شده به صورت فول‌استک با Next.js و TypeScript در فرانت‌اند و بک‌اند، استفاده از Prisma ORM و دیتابیس PostgreSQL.',
-    tech: ['Next.js', 'TypeScript', 'Prisma ORM', 'PostgreSQL'],
-  },
-  {
-    title: 'وبلاگ GraphQL با React',
-    subtitle: '(پروژه تمرینی ساده)',
-    link: 'https://github.com/ftmehsm/blog-graphql',
-    linkLabel: 'مشاهده در گیت‌هاب',
-    description:
-      'استفاده از Hygraph برای ساخت دیتابیس، استفاده از MUI برای طراحی رابط کاربری و استفاده از GraphQL برای دریافت داده‌ها.',
-    tech: ['React.js', 'Hygraph', 'GraphQL', 'MUI'],
-  },
-  {
-    title: 'وبسایت دیوار',
-    subtitle: '(پروژه نهایی آموزش React)',
-    link: 'https://github.com/ftmehsm/divar',
-    linkLabel: 'مشاهده در گیت‌هاب',
-    description:
-      'استفاده از بک‌اند واقعی و Swagger، پیاده‌سازی احراز هویت و مجوز با کوکی، استفاده از React Query، React Hook Form، TailwindCss و Context برای مدیریت حالت.',
-    tech: ['React', 'Swagger', 'react-query', 'React-Hook-Form', 'TailwindCss', 'Context'],
-  },
-  {
-    title: 'سبد خرید با React',
-    subtitle: '(پروژه تمرینی ساده)',
-    link: 'https://github.com/ftmehsm/shoppingCart',
-    linkLabel: 'مشاهده در گیت‌هاب',
-    description:
-      'استفاده از هوک‌هایی مثل useState و useEffect، استفاده از مسیریابی با react-router-dom 6 و مدیریت وضعیت با Redux Toolkit.',
-    tech: ['React.js', 'react-router-dom 6', 'Redux-toolkit'],
-  },
-]
+import { projects as projectsData } from '../data/portfolioData'
 
 export default function Projects() {
   const { language } = useLanguage()
-  const projects = language === 'fa' ? projectsFa : projectsEn
+  const isFa = language === 'fa'
+  const projects = isFa ? projectsData.listFa : projectsData.listEn
+  const linkLabelFallback = isFa ? projectsData.viewOnGithubFa : projectsData.viewOnGithubEn
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
@@ -117,7 +26,7 @@ export default function Projects() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          {language === 'fa' ? 'پروژه‌ها' : 'Projects'}
+          {isFa ? projectsData.headingFa : projectsData.headingEn}
         </motion.h2>
         <div className="space-y-2">
           {projects.map((project, index) => (
@@ -172,7 +81,7 @@ export default function Projects() {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 text-gray-800 dark:text-gray-200 hover:underline mb-2"
                         >
-                          {project.linkLabel || project.link}
+                          {project.linkLabel != null ? project.linkLabel : linkLabelFallback}
                           <HiExternalLink className="w-4 h-4" aria-hidden="true" />
                         </a>
                       )}

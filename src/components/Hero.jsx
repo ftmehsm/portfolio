@@ -1,13 +1,10 @@
 import { motion } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
+import { hero } from '../data/portfolioData'
 
 export default function Hero() {
   const { language } = useLanguage()
-  const taglineEn =
-    'Results-driven Front End Developer with 1 year of hands-on experience building responsive, high-performance user interfaces with React.js.'
-  const taglineFa =
-    'توسعه‌دهنده فرانت‌اند با یک سال تجربه در شرکت B2B نرم‌افزاری. مسلط به React.js برای ساخت صفحات وب سریع و زیبا که روی موبایل و کامپیوتر عالی کار می‌کنه. از ابزارهای هوش مصنوعی جدید استفاده می‌کنم تا کد بهتر و سریع‌تر بنویسم. دوست دارم رابط کاربری بسازم که کاربر راحت باشه و به شرکت کمک کنه بهتر کار کنه.'
-
+  const isFa = language === 'fa'
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -36,16 +33,16 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          {language === 'fa' ? 'توسعه‌دهنده فرانت‌اند' : 'FRONT END DEVELOPER'}
+          {isFa ? hero.titleFa : hero.titleEn}
         </motion.p>
-        {/* <motion.p
+        <motion.p
           className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {language === 'fa' ? taglineFa : taglineEn}
-        </motion.p> */}
+          {isFa ? hero.taglineFa : hero.taglineEn}
+        </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-4 justify-center"
           initial={{ opacity: 0, y: 20 }}
@@ -57,16 +54,16 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
-            aria-label={language === 'fa' ? 'دانلود رزومه PDF' : 'Download resume PDF'}
+            aria-label={isFa ? 'دانلود رزومه PDF' : 'Download resume PDF'}
           >
-            {language === 'fa' ? 'دانلود رزومه' : 'Download Resume'}
+            {isFa ? hero.downloadResumeFa : hero.downloadResumeEn}
           </a>
           <button
             onClick={scrollToContact}
             className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium border-2 border-gray-900 dark:border-gray-100 text-gray-900 dark:text-gray-100 hover:bg-gray-900 dark:hover:bg-gray-100 hover:text-white dark:hover:text-gray-900 transition-colors"
-            aria-label={language === 'fa' ? 'رفتن به بخش تماس' : 'Scroll to contact section'}
+            aria-label={isFa ? 'رفتن به بخش تماس' : 'Scroll to contact section'}
           >
-            {language === 'fa' ? 'تماس با من' : 'Contact Me'}
+            {isFa ? hero.contactMeFa : hero.contactMeEn}
           </button>
         </motion.div>
       </div>

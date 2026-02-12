@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { HiArrowUp } from 'react-icons/hi'
 import { useLanguage } from '../context/LanguageContext'
+import { footer as footerData } from '../data/portfolioData'
 
 const currentYear = new Date().getFullYear()
 
@@ -11,6 +11,7 @@ function scrollToTop() {
 
 export default function Footer() {
   const { language } = useLanguage()
+  const isFa = language === 'fa'
   return (
     <footer
       className="py-8 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
@@ -18,12 +19,11 @@ export default function Footer() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          © {currentYear} Fatemeh Esmailzadeh.{' '}
-          {language === 'fa' ? 'کلیه حقوق محفوظ است.' : 'All rights reserved.'}
+          © {currentYear} Fatemeh Esmailzadeh. {isFa ? footerData.rightsFa : footerData.rightsEn}
         </p>
         <div className="flex items-center gap-4">
           <a
-            href="https://github.com/ftmehsn"
+            href={footerData.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
@@ -32,7 +32,7 @@ export default function Footer() {
             <FaGithub className="w-6 h-6" />
           </a>
           <a
-            href="https://www.linkedin.com/in/fatemehesm"
+            href={footerData.linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
@@ -44,10 +44,10 @@ export default function Footer() {
         <button
           onClick={scrollToTop}
           className="flex items-center gap-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-          aria-label={language === 'fa' ? 'بازگشت به بالا' : 'Back to top'}
+          aria-label={isFa ? footerData.backToTopFa : footerData.backToTopEn}
         >
           <HiArrowUp className="w-5 h-5" aria-hidden="true" />
-          {language === 'fa' ? 'بازگشت به بالا' : 'Back to top'}
+          {isFa ? footerData.backToTopFa : footerData.backToTopEn}
         </button>
       </div>
     </footer>

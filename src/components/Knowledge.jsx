@@ -1,34 +1,13 @@
 import { motion } from 'framer-motion'
 import { HiLightBulb } from 'react-icons/hi'
 import { useLanguage } from '../context/LanguageContext'
-
-const itemsEn = [
-  'json-server library',
-  'storybook',
-  'axios library',
-  'redux and redux-toolkit',
-  'graphQL',
-  'react-query',
-  'daisyUI',
-  'swiper',
-  'sass',
-]
-
-const itemsFa = [
-  'کتابخانه json-server',
-  'storybook',
-  'کتابخانه axios',
-  'redux و redux-toolkit',
-  'graphQL',
-  'react-query',
-  'daisyUI',
-  'swiper',
-  'sass',
-]
+import { knowledge as knowledgeData } from '../data/portfolioData'
 
 export default function Knowledge() {
   const { language } = useLanguage()
-  const items = language === 'fa' ? itemsFa : itemsEn
+  const isFa = language === 'fa'
+  const items = isFa ? knowledgeData.itemsFa : knowledgeData.itemsEn
+  const prefix = isFa ? knowledgeData.prefixFa : knowledgeData.prefixEn
   return (
     <section
       id="knowledge"
@@ -45,7 +24,7 @@ export default function Knowledge() {
           transition={{ duration: 0.5 }}
         >
           <HiLightBulb className="w-8 h-8 text-gray-600 dark:text-gray-400" aria-hidden="true" />
-          {language === 'fa' ? 'سایر دانش‌ها' : 'Other Knowledges'}
+          {isFa ? knowledgeData.headingFa : knowledgeData.headingEn}
         </motion.h2>
         <motion.ul
           className="grid sm:grid-cols-2 gap-2 list-disc list-inside text-gray-600 dark:text-gray-400"
@@ -56,7 +35,7 @@ export default function Knowledge() {
         >
           {items.map((item) => (
             <li key={item} className="leading-relaxed">
-              {language === 'fa' ? 'تجربه کار با ' : 'Have experience with '}
+              {prefix}
               {item}
             </li>
           ))}

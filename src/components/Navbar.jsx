@@ -3,37 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { HiMenu, HiX, HiMoon, HiSun } from 'react-icons/hi'
 import { useDarkMode } from '../context/DarkModeContext'
 import { useLanguage } from '../context/LanguageContext'
-
-const getNavLinks = (language) =>
-  language === 'fa'
-    ? [
-        { id: 'hero', label: 'خانه' },
-        { id: 'about', label: 'درباره من' },
-        { id: 'skills', label: 'مهارت‌ها' },
-        { id: 'education', label: 'تحصیلات' },
-        { id: 'languages', label: 'زبان‌ها' },
-        { id: 'experience', label: 'تجربه کاری' },
-        { id: 'projects', label: 'پروژه‌ها' },
-        { id: 'knowledge', label: 'دانش‌ دیگر' },
-        { id: 'contact', label: 'تماس' },
-      ]
-    : [
-        { id: 'hero', label: 'Home' },
-        { id: 'about', label: 'About' },
-        { id: 'skills', label: 'Skills' },
-        { id: 'education', label: 'Education' },
-        { id: 'languages', label: 'Languages' },
-        { id: 'experience', label: 'Experience' },
-        { id: 'projects', label: 'Projects' },
-        { id: 'knowledge', label: 'Knowledge' },
-        { id: 'contact', label: 'Contact' },
-      ]
+import { navLinks as navLinksData } from '../data/portfolioData'
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const { isDark, toggleDarkMode } = useDarkMode()
   const { language, toggleLanguage } = useLanguage()
-  const navLinks = getNavLinks(language)
+  const navLinks = navLinksData[language === 'fa' ? 'fa' : 'en']
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id)

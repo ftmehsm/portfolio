@@ -2,38 +2,17 @@ import { motion } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 import {
   SiHtml5,
-  SiCss3,
   SiTailwindcss,
   SiJavascript,
   SiReact,
   SiNextdotjs,
   SiGit,
-  SiGitlab,
 } from 'react-icons/si'
 import { HiUserGroup, HiCheckCircle, HiChat, HiClock } from 'react-icons/hi'
+import { skills as skillsData } from '../data/portfolioData'
 
-const technicalSkills = [
-  { name: 'Html & CSS', icon: SiHtml5 },
-  { name: 'TailwindCss', icon: SiTailwindcss },
-  { name: 'JavaScript', icon: SiJavascript },
-  { name: 'React.js', icon: SiReact },
-  { name: 'Next.js', icon: SiNextdotjs },
-  { name: 'Git & Gitlab', icon: SiGit },
-]
-
-const softSkillsEn = [
-  { name: 'Team work', icon: HiUserGroup },
-  { name: 'Responsible', icon: HiCheckCircle },
-  { name: 'Good communication', icon: HiChat },
-  { name: 'Punctual', icon: HiClock },
-]
-
-const softSkillsFa = [
-  { name: 'کار تیمی', icon: HiUserGroup },
-  { name: 'مسئولیت‌پذیر', icon: HiCheckCircle },
-  { name: 'ارتباط مؤثر', icon: HiChat },
-  { name: 'وقت‌شناس', icon: HiClock },
-]
+const technicalIcons = [SiHtml5, SiTailwindcss, SiJavascript, SiReact, SiNextdotjs, SiGit]
+const softIcons = [HiUserGroup, HiCheckCircle, HiChat, HiClock]
 
 function SkillCard({ name, icon: Icon, index }) {
   return (
@@ -55,7 +34,15 @@ function SkillCard({ name, icon: Icon, index }) {
 
 export default function Skills() {
   const { language } = useLanguage()
-  const softSkills = language === 'fa' ? softSkillsFa : softSkillsEn
+  const isFa = language === 'fa'
+  const technicalSkills = skillsData.technical.map((s, i) => ({
+    name: isFa ? s.nameFa : s.nameEn,
+    icon: technicalIcons[i],
+  }))
+  const softSkills = skillsData.soft.map((s, i) => ({
+    name: isFa ? s.nameFa : s.nameEn,
+    icon: softIcons[i],
+  }))
   return (
     <section
       id="skills"
@@ -71,12 +58,12 @@ export default function Skills() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          {language === 'fa' ? 'مهارت‌ها' : 'Skills'}
+          {isFa ? skillsData.headingFa : skillsData.headingEn}
         </motion.h2>
         <div className="grid md:grid-cols-2 gap-12">
           <div>
             <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">
-              {language === 'fa' ? 'مهارت‌های فنی' : 'Technical'}
+              {isFa ? skillsData.technicalLabelFa : skillsData.technicalLabelEn}
             </h3>
             <div className="grid sm:grid-cols-2 gap-3">
               {technicalSkills.map((skill, i) => (
@@ -86,7 +73,7 @@ export default function Skills() {
           </div>
           <div>
             <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">
-              {language === 'fa' ? 'مهارت‌های نرم' : 'Soft'}
+              {isFa ? skillsData.softLabelFa : skillsData.softLabelEn}
             </h3>
             <div className="grid sm:grid-cols-2 gap-3">
               {softSkills.map((skill, i) => (

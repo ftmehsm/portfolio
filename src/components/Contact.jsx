@@ -4,18 +4,9 @@ import emailjs from '@emailjs/browser'
 import { HiMail } from 'react-icons/hi'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { useLanguage } from '../context/LanguageContext'
+import { contact as contactData } from '../data/portfolioData'
 
-const contactInfoEn = [
-  { label: 'Email', value: 'ftmbesinuss@gmail.com', href: 'mailto:ftmbesinuss@gmail.com', icon: HiMail },
-  { label: 'GitHub', value: 'github.com/ftmehsn', href: 'https://github.com/ftmehsn', icon: FaGithub },
-  { label: 'LinkedIn', value: 'linkedin.com/in/fatemehesm', href: 'https://www.linkedin.com/in/fatemehesm', icon: FaLinkedin },
-]
-
-const contactInfoFa = [
-  { label: 'ایمیل', value: 'ftmbesinuss@gmail.com', href: 'mailto:ftmbesinuss@gmail.com', icon: HiMail },
-  { label: 'گیت‌هاب', value: 'github.com/ftmehsn', href: 'https://github.com/ftmehsn', icon: FaGithub },
-  { label: 'لینکدین', value: 'linkedin.com/in/fatemehesm', href: 'https://www.linkedin.com/in/fatemehesm', icon: FaLinkedin },
-]
+const iconMap = { email: HiMail, github: FaGithub, linkedin: FaLinkedin }
 
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
@@ -23,7 +14,14 @@ const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 export default function Contact() {
   const { language } = useLanguage()
-  const contactInfo = language === 'fa' ? contactInfoFa : contactInfoEn
+  const isFa = language === 'fa'
+  const contactInfo = contactData.info.map((item) => ({
+    key: item.key,
+    label: isFa ? item.labelFa : item.labelEn,
+    value: item.value,
+    href: item.href,
+    icon: iconMap[item.key],
+  }))
   const formRef = useRef(null)
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState(null) // 'sending' | 'success' | 'error'
@@ -33,11 +31,7 @@ export default function Contact() {
     e.preventDefault()
     if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
       setStatus('error')
-      setErrorMessage(
-        language === 'fa'
-          ? 'ایمیل پیکربندی نشده است. مقادیر VITE_EMAILJS_* را در فایل .env تنظیم کنید.'
-          : 'Email is not configured. Add VITE_EMAILJS_* keys to .env',
-      )
+      setErrorMessage(isFa ? contactData.form.errorConfigFa : contactData.form.errorConfigEn)
       return
     }
     setStatus('sending')
@@ -53,7 +47,7 @@ export default function Contact() {
       setFormData({ name: '', email: '', message: '' })
     } catch (err) {
       setStatus('error')
-      const fallback = language === 'fa' ? 'ارسال ناموفق بود. لطفاً دوباره تلاش کنید.' : 'Failed to send. Please try again.'
+      const fallback = isFa ? contactData.form.errorFallbackFa : contactData.form.errorFallbackEn
       setErrorMessage(err.text || err.message || fallback)
     }
   }
@@ -77,7 +71,7 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          {language === 'fa' ? 'تماس' : 'Contact'}
+          {isFa ? contactData.headingFa : contactData.headingEn}
         </motion.h2>
         <div className="grid md:grid-cols-2 gap-12">
           <motion.div
@@ -87,9 +81,9 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            {contactInfo.map(({ label, value, href, icon: Icon }) => (
+            {contactInfo.map(({ key, label, value, href, icon: Icon }) => (
               <a
-                key={label}
+                key={key}
                 href={href}
                 className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
                 aria-label={`${label}: ${value}`}
@@ -110,7 +104,7 @@ export default function Contact() {
           >
             <div>
               <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                {language === 'fa' ? 'نام' : 'Name'}
+                {isFa ? contactData.form.nameLabelFa : contactData.form.nameLabelEn}
               </label>
               <input
                 id="contact-name"
@@ -120,13 +114,13 @@ export default function Contact() {
                 value={formData.name}
                 onChange={handleChange}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-gray-500 focus:border-transparent"
-                placeholder={language === 'fa' ? 'نام شما' : 'Your name'}
+                placeholder={isFa ? contactData.form.namePlaceholderFa : contactData.form.namePlaceholderEn}
                 aria-required="true"
               />
             </div>
             <div>
               <label htmlFor="contact-email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                {language === 'fa' ? 'ایمیل' : 'Email'}
+                {isFa ? contactData.form.emailLabelFa : contactData.form.emailLabelEn}
               </label>
               <input
                 id="contact-email"
@@ -136,13 +130,13 @@ export default function Contact() {
                 value={formData.email}
                 onChange={handleChange}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-gray-500 focus:border-transparent"
-                placeholder={language === 'fa' ? 'ایمیل شما' : 'your@email.com'}
+                placeholder={isFa ? contactData.form.emailPlaceholderFa : contactData.form.emailPlaceholderEn}
                 aria-required="true"
               />
             </div>
             <div>
               <label htmlFor="contact-message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                {language === 'fa' ? 'پیام' : 'Message'}
+                {isFa ? contactData.form.messageLabelFa : contactData.form.messageLabelEn}
               </label>
               <textarea
                 id="contact-message"
@@ -152,13 +146,13 @@ export default function Contact() {
                 value={formData.message}
                 onChange={handleChange}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-gray-500 focus:border-transparent resize-none"
-                placeholder={language === 'fa' ? 'پیام شما' : 'Your message'}
+                placeholder={isFa ? contactData.form.messagePlaceholderFa : contactData.form.messagePlaceholderEn}
                 aria-required="true"
               />
             </div>
             {status === 'success' && (
               <p className="text-sm text-green-600 dark:text-green-400" role="status">
-                {language === 'fa' ? 'ممنون! پیام شما با موفقیت ارسال شد.' : 'Thank you! Your message has been sent.'}
+                {isFa ? contactData.form.successFa : contactData.form.successEn}
               </p>
             )}
             {status === 'error' && (
@@ -172,12 +166,8 @@ export default function Contact() {
               className="w-full sm:w-auto px-6 py-3 rounded-lg font-medium bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === 'sending'
-                ? language === 'fa'
-                  ? 'در حال ارسال…'
-                  : 'Sending…'
-                : language === 'fa'
-                ? 'ارسال پیام'
-                : 'Send message'}
+                ? (isFa ? contactData.form.sendingFa : contactData.form.sendingEn)
+                : (isFa ? contactData.form.sendFa : contactData.form.sendEn)}
             </button>
           </motion.form>
         </div>

@@ -1,15 +1,11 @@
 import { motion } from 'framer-motion'
 import { HiAcademicCap } from 'react-icons/hi'
 import { useLanguage } from '../context/LanguageContext'
-
-const educationEn =
-  "Bachelor's degree in computer engineering, Islamic Azad University, Science And Research Branch, 2020-2024."
-
-const educationFa =
-  'کارشناسی مهندسی کامپیوتر، دانشگاه آزاد اسلامی واحد علوم و تحقیقات، 1400-1404.'
+import { education } from '../data/portfolioData'
 
 export default function Education() {
   const { language } = useLanguage()
+  const isFa = language === 'fa'
   return (
     <section
       id="education"
@@ -26,7 +22,7 @@ export default function Education() {
           transition={{ duration: 0.5 }}
         >
           <HiAcademicCap className="w-8 h-8 text-gray-600 dark:text-gray-400" aria-hidden="true" />
-          {language === 'fa' ? 'تحصیلات' : 'Education'}
+          {isFa ? education.headingFa : education.headingEn}
         </motion.h2>
         <motion.p
           className="text-gray-600 dark:text-gray-400 text-base sm:text-lg leading-relaxed"
@@ -35,7 +31,7 @@ export default function Education() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          {language === 'fa' ? educationFa : educationEn}
+          {isFa ? education.textFa : education.textEn}
         </motion.p>
       </div>
     </section>

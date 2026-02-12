@@ -1,14 +1,10 @@
 import { motion } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
-
-const profileEn =
-  'Results-driven Front End Developer with 1 year of hands-on experience in a B2B SaaS environment, specializing in React.js to build responsive, high-performance user interfaces. Skilled at integrating modern AI-powered tools to streamline development workflows, enhance code quality, and accelerate feature delivery. Passionate about creating intuitive user experiences that drive business value.'
-
-const profileFa =
-  'توسعه‌دهنده فرانت‌اند نتیجه‌گرا با یک سال تجربه کاری در محیط نرم‌افزارهای سازمانی B2B، مسلط به React.js برای ساخت رابط‌های کاربری واکنش‌گرا و پرکارایی. آشنا با استفاده از ابزارهای هوشمند و مبتنی بر هوش مصنوعی برای بهبود فرایند توسعه، افزایش کیفیت کد و تسریع ارائه قابلیت‌ها. علاقه‌مند به خلق تجربه‌های کاربری شهودی که برای کسب‌وکار ارزش ایجاد می‌کنند.'
+import { about } from '../data/portfolioData'
 
 export default function About() {
   const { language } = useLanguage()
+  const isFa = language === 'fa'
   return (
     <section
       id="about"
@@ -24,7 +20,7 @@ export default function About() {
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5 }}
         >
-          {language === 'fa' ? 'درباره من / پروفایل' : 'About / Profile'}
+          {isFa ? about.headingFa : about.headingEn}
         </motion.h2>
         <motion.p
           className="text-gray-600 dark:text-gray-400 leading-relaxed text-base sm:text-lg"
@@ -33,7 +29,7 @@ export default function About() {
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          {language === 'fa' ? profileFa : profileEn}
+          {isFa ? about.profileFa : about.profileEn}
         </motion.p>
       </div>
     </section>

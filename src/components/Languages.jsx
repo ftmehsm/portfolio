@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion'
 import { HiTranslate } from 'react-icons/hi'
 import { useLanguage } from '../context/LanguageContext'
+import { languagesSection } from '../data/portfolioData'
 
 export default function Languages() {
   const { language } = useLanguage()
+  const isFa = language === 'fa'
   return (
     <section
       id="languages"
@@ -20,7 +22,7 @@ export default function Languages() {
           transition={{ duration: 0.5 }}
         >
           <HiTranslate className="w-8 h-8 text-gray-600 dark:text-gray-400" aria-hidden="true" />
-          {language === 'fa' ? 'زبان‌ها' : 'Languages'}
+          {isFa ? languagesSection.headingFa : languagesSection.headingEn}
         </motion.h2>
         <motion.div
           className="flex flex-wrap gap-4"
@@ -30,7 +32,7 @@ export default function Languages() {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <span className="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 font-medium">
-            {language === 'fa' ? 'انگلیسی — مسلط' : 'English — Fluent'}
+            {isFa ? languagesSection.englishFluentFa : languagesSection.englishFluentEn}
           </span>
         </motion.div>
       </div>
