@@ -218,8 +218,7 @@ export const projects = {
     {
       title: 'Blueprint',
       subtitle: 'ابزار طراحی و ساخت فرایندهای سازمانی (شبیه Pega Blueprint)',
-      link: 'https://adak.ir/',
-      linkLabel: 'آداک',
+      link: null,
       description:
         'توسعه فرانت‌اند ابزار پیشرفته‌ای شبیه Pega GenAI Blueprint برای طراحی سریع گردش کار، چرخه عمر Case و فرایندهای کسب‌وکار. تعریف فرایند با ورودی زبان طبیعی و پیشنهادات خودکار مبتنی بر هوش مصنوعی برای مراحل، داده‌ها و نقش‌ها (Personas). پیاده‌سازی با React.js / Next.js + TypeScript + Tailwind CSS. تمرکز بر همکاری تیمی، کاهش زمان طراحی اولیه و تسریع توسعه اپلیکیشن‌های سازمانی در محیط B2B SaaS.',
       tech: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS'],
@@ -227,8 +226,7 @@ export const projects = {
     {
       title: 'Tasklist',
       subtitle: 'PWA مدیریت وظایف و فرایندهای سازمانی',
-      link: 'https://adak.ir/',
-      linkLabel: 'آداک',
+      link: null,
       description:
         'توسعه Progressive Web App (PWA) برای مدیریت وظایف، گردش کار و فرایندهای کسب‌وکار. شبیه ابزارهای پیشرفته مثل Camunda Tasklist با امکان مشاهده، قبول، تکمیل وظایف و تعامل با فرم‌های فرایند. پیاده‌سازی کاملاً واکنش‌گرا و قابل استفاده آفلاین با React.js / Next.js + TypeScript + Tailwind CSS. تمرکز بر تجربه کاربری ساده و سریع برای کاربران سازمانی در محیط B2B SaaS. پروژه سازمانی شرکت آداک.',
       tech: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS', 'PWA'],
