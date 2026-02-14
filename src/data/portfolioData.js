@@ -31,6 +31,8 @@ export const navLinks = {
 
 // ─── Hero ───────────────────────────────────────────────────────────────────
 export const hero = {
+  resumeUrlEn: '/resume-english.pdf',
+  resumeUrlFa: '/resume-farsi.pdf',
   titleEn: 'FRONT END DEVELOPER',
   titleFa: 'توسعه‌دهنده فرانت‌اند',
   taglineEn:

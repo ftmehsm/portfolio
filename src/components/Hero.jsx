@@ -50,7 +50,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <a
-            href="/resume.pdf"
+            href={isFa ? hero.resumeUrlFa : hero.resumeUrlEn}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
