@@ -154,6 +154,20 @@ export const projects = {
   liveDemoFa: 'دموی زنده',
   listEn: [
     {
+      title: 'Blueprint',
+      subtitle: 'Organizational Process Design and Building Tool (Similar to Pega Blueprint)',
+      description:
+        'Developed the front-end for an advanced tool similar to Pega GenAI Blueprint for rapid design of workflows, Case Lifecycle, and business processes. Enabled process definition using natural language input, with AI-driven automatic suggestions for steps, data, and roles (Personas). Implemented using React.js / Next.js + TypeScript + Tailwind CSS. Focused on team collaboration, reducing initial design time, and accelerating the development of enterprise applications in a B2B SaaS environment.',
+      tech: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+    },
+    {
+      title: 'Tasklist',
+      subtitle: 'PWA for Task and Organizational Process Management',
+      description:
+        'Developed a Progressive Web App (PWA) for managing tasks, workflows, and business processes. Similar to advanced tools like Camunda Tasklist, featuring task viewing, claiming, completion, and interaction with process forms. Fully responsive and offline-capable implementation using React.js / Next.js + TypeScript + Tailwind CSS. Emphasized simple and fast user experience for organizational users in a B2B SaaS environment. Organizational project for Adak Company.',
+      tech: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS', 'PWA'],
+    },
+    {
       title: 'B2B website',
       subtitle: null,
       link: 'https://adak.ir/',
@@ -201,6 +215,24 @@ export const projects = {
     },
   ],
   listFa: [
+    {
+      title: 'Blueprint',
+      subtitle: 'ابزار طراحی و ساخت فرایندهای سازمانی (شبیه Pega Blueprint)',
+      link: 'https://adak.ir/',
+      linkLabel: 'آداک',
+      description:
+        'توسعه فرانت‌اند ابزار پیشرفته‌ای شبیه Pega GenAI Blueprint برای طراحی سریع گردش کار، چرخه عمر Case و فرایندهای کسب‌وکار. تعریف فرایند با ورودی زبان طبیعی و پیشنهادات خودکار مبتنی بر هوش مصنوعی برای مراحل، داده‌ها و نقش‌ها (Personas). پیاده‌سازی با React.js / Next.js + TypeScript + Tailwind CSS. تمرکز بر همکاری تیمی، کاهش زمان طراحی اولیه و تسریع توسعه اپلیکیشن‌های سازمانی در محیط B2B SaaS.',
+      tech: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+    },
+    {
+      title: 'Tasklist',
+      subtitle: 'PWA مدیریت وظایف و فرایندهای سازمانی',
+      link: 'https://adak.ir/',
+      linkLabel: 'آداک',
+      description:
+        'توسعه Progressive Web App (PWA) برای مدیریت وظایف، گردش کار و فرایندهای کسب‌وکار. شبیه ابزارهای پیشرفته مثل Camunda Tasklist با امکان مشاهده، قبول، تکمیل وظایف و تعامل با فرم‌های فرایند. پیاده‌سازی کاملاً واکنش‌گرا و قابل استفاده آفلاین با React.js / Next.js + TypeScript + Tailwind CSS. تمرکز بر تجربه کاربری ساده و سریع برای کاربران سازمانی در محیط B2B SaaS. پروژه سازمانی شرکت آداک.',
+      tech: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS', 'PWA'],
+    },
     {
       title: 'سایت B2B',
       subtitle: null,
