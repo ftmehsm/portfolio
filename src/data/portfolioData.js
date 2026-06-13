@@ -316,8 +316,8 @@ export const contact = {
   headingFa: 'تماس',
   // icon key: 'email' | 'github' | 'linkedin' (component maps to icon component)
   info: [
-    { key: 'email', value: 'ftmbesinuss@gmail.com', href: 'mailto:ftmbesinuss@gmail.com', labelEn: 'Email', labelFa: 'ایمیل' },
-    { key: 'github', value: 'github.com/ftmehsn', href: 'https://github.com/ftmehsn', labelEn: 'GitHub', labelFa: 'گیت‌هاب' },
+    { key: 'email', value: 'ftmhbesinuss@gmail.com', href: 'mailto:ftmhbesinuss@gmail.com', labelEn: 'Email', labelFa: 'ایمیل' },
+    { key: 'github', value: 'github.com/ftmehsm', href: 'https://github.com/ftmehsm', labelEn: 'GitHub', labelFa: 'گیت‌هاب' },
     { key: 'linkedin', value: 'linkedin.com/in/fatemehesm', href: 'https://www.linkedin.com/in/fatemehesm', labelEn: 'LinkedIn', labelFa: 'لینکدین' },
   ],
   form: {
