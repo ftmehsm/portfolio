@@ -4,6 +4,7 @@ import {
   SiHtml5,
   SiTailwindcss,
   SiJavascript,
+  SiTypescript,
   SiReact,
   SiNextdotjs,
   SiGit,
@@ -11,7 +12,7 @@ import {
 import { HiUserGroup, HiCheckCircle, HiChat, HiClock } from 'react-icons/hi'
 import { skills as skillsData } from '../data/portfolioData'
 
-const technicalIcons = [SiHtml5, SiTailwindcss, SiJavascript, SiReact, SiNextdotjs, SiGit]
+const technicalIcons = [SiHtml5, SiTailwindcss, SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiGit]
 const softIcons = [HiUserGroup, HiCheckCircle, HiChat, HiClock]
 
 function SkillCard({ name, icon: Icon, index }) {

@@ -61,6 +61,7 @@ export const skills = {
     { nameEn: 'Html & CSS', nameFa: 'Html & CSS' },
     { nameEn: 'TailwindCss', nameFa: 'TailwindCss' },
     { nameEn: 'JavaScript', nameFa: 'JavaScript' },
+    { nameEn: 'TypeScript', nameFa: 'TypeScript' },
     { nameEn: 'React.js', nameFa: 'React.js' },
     { nameEn: 'Next.js', nameFa: 'Next.js' },
     { nameEn: 'Git & Gitlab', nameFa: 'Git & Gitlab' },
